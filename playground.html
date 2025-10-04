@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Maze Generation Algorithms</h1>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Compare</a>
+            <a href="playground.html" class="active">Playground</a>
+            <a href="solver-race.html">Solver Race</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Playground</h2>
+        <div id="playground-container">
+            <div class="controls">
+                <label for="algorithm-select">Algorithm:</label>
+                <select id="algorithm-select"></select>
+
+                <label for="solver-select">Solver:</label>
+                <select id="solver-select"></select>
+
+                <label for="size-select">Size:</label>
+                <select id="size-select">
+                    <option value="10">Small (10x10)</option>
+                    <option value="20" selected>Medium (20x20)</option>
+                    <option value="40">Large (40x40)</option>
+                </select>
+
+                <label for="speed-select">Speed:</label>
+                <select id="speed-select">
+                    <option value="1">Slow</option>
+                    <option value="5" selected>Medium</option>
+                    <option value="25">Fast</option>
+                </select>
+
+                <button id="generate-btn">Generate</button>
+                <button id="solve-btn">Solve</button>
+                <button id="clear-solution-btn">Clear Solution</button>
+
+                <div id="legend">
+                    <h4>Legend</h4>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--visited-color);"></div>
+                        <span>Visited Cells</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--solution-color);"></div>
+                        <span>Solution Path</span>
+                    </div>
+                </div>
+
+                <div id="stats-container">
+                    <h4>Live Stats</h4>
+                    <div class="stats-item">
+                        <span>Generator Steps:</span>
+                        <span id="gen-steps">0</span>
+                    </div>
+                    <div class="stats-item">
+                        <span>Solver Steps:</span>
+                        <span id="solve-steps">0</span>
+                    </div>
+                </div>
+            </div>
+            <canvas id="maze-canvas"></canvas>
+        </div>
+    </main>
+    <script src="js/playground.js" type="module"></script>
+</body>
+</html>

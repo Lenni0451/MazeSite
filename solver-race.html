@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solver Race</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Maze Generation Algorithms</h1>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Compare Mazes</a>
+            <a href="playground.html">Playground</a>
+            <a href="solver-race.html" class="active">Solver Race</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Solver Race</h2>
+        <div class="controls">
+            <label for="algorithm-select">Maze Generator:</label>
+            <select id="algorithm-select"></select>
+
+            <label for="size-select">Size:</label>
+            <select id="size-select">
+                <option value="20">Small (20x20)</option>
+                <option value="35" selected>Medium (35x35)</option>
+                <option value="50">Large (50x50)</option>
+            </select>
+
+            <label for="speed-select">Speed:</label>
+            <select id="speed-select">
+                <option value="1">Slow</option>
+                <option value="5" selected>Medium</option>
+                <option value="25">Fast</option>
+            </select>
+
+            <button id="race-btn">Generate & Race</button>
+        </div>
+        <div id="solver-grid" class="solver-race-grid">
+            <!-- Solver comparisons will be dynamically inserted here -->
+        </div>
+    </main>
+    <script src="js/solver-race.js" type="module"></script>
+</body>
+</html>
