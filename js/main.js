@@ -77,6 +77,7 @@ algorithms.forEach((algo, index) => {
     const buttonContainer = document.createElement('div');
     buttonContainer.style.display = 'flex';
     buttonContainer.style.gap = '10px';
+    buttonContainer.style.justifyContent = 'center';
     playground.appendChild(buttonContainer);
 
     const generateBtn = document.createElement('button');

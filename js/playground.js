@@ -88,10 +88,11 @@ function generateMaze() {
 
     // Responsive canvas sizing
     const canvasContainer = canvas.parentElement;
-    const canvasWidth = canvasContainer.clientWidth;
-    canvas.width = canvasWidth;
-    canvas.height = canvasWidth;
-    const cellSize = Math.floor(canvasWidth / size);
+    const availableWidth = canvasContainer.clientWidth;
+    const cellSize = Math.floor(availableWidth / size);
+    const canvasSize = size * cellSize;
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
 
     grid = new Grid(size, size);
     renderer = new Renderer(grid, ctx, cellSize);

@@ -93,14 +93,15 @@ function generateAndRace() {
     });
 
     // 3. Get consistent size and create instances
-    const canvasWidth = tempElements[0].canvas.clientWidth;
+    const availableWidth = tempElements[0].canvas.clientWidth;
 
     tempElements.forEach(({ canvas, status, solverInfo }) => {
         const gridClone = masterGrid.clone();
 
-        canvas.width = canvasWidth;
-        canvas.height = canvasWidth;
-        const cellSize = canvasWidth / size;
+        const cellSize = Math.floor(availableWidth / size);
+        const canvasSize = size * cellSize;
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
 
         const ctx = canvas.getContext('2d');
         const renderer = new Renderer(gridClone, ctx, cellSize);

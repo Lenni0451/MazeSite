@@ -1,61 +1,82 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* --- Root Variables (New Theme) --- */
 :root {
-    --background-color: #1a1a1a;
-    --text-color: #f0f0f0;
-    --primary-color: #00aaff;
-    --secondary-color: #333;
-    --wall-color: #f0f0f0;
-    --path-color: #1a1a1a;
-    --solution-color: #ff4500;
-    --visited-color: rgba(0, 170, 255, 0.3);
+    --background-color: #0D1117; /* Dark Navy Blue */
+    --primary-glow: #00aaff;
+    --secondary-glow: #ff4500; /* Accent Orange */
+    --text-color: #c9d1d9;
+    --text-light: #f0f6fc;
+    --border-color: rgba(13, 135, 204, 0.3);
+    --container-bg: rgba(22, 27, 34, 0.8);
+
+    --wall-color: var(--primary-glow);
+    --path-color: transparent; /* Path is the absence of walls */
+    --solution-color: var(--secondary-glow);
+    --visited-color: rgba(0, 170, 255, 0.15); /* Slightly reduced alpha */
 }
 
+/* --- General Body & Typography --- */
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
+/* --- Header & Navigation --- */
 header {
     width: 100%;
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--secondary-color);
+    padding: 25px 0;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(180deg, rgba(22, 27, 34, 0.5) 0%, rgba(22, 27, 34, 0) 100%);
+}
+
+header h1 {
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px var(--primary-glow);
 }
 
 nav {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
     margin: 0 15px;
-    padding: 5px 10px;
+    padding: 8px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
-nav a.active, nav a:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+nav a:hover {
+    color: var(--text-light);
+    border-color: var(--border-color);
+    text-shadow: 0 0 5px var(--primary-glow);
 }
 
+nav a.active {
+    color: var(--text-light);
+    background-color: var(--primary-glow);
+    box-shadow: 0 0 10px var(--primary-glow);
+    border-color: var(--primary-glow);
+}
+
+/* --- Main Content & Containers --- */
 main {
     width: 90%;
-    max-width: 1200px;
-    margin-top: 20px;
+    max-width: 1300px;
+    margin: 30px auto 0;
     padding-bottom: 50px;
-}
-
-canvas {
-    background-color: var(--path-color);
-    border: 2px solid var(--primary-color);
-    border-radius: 5px;
-    margin-top: 20px;
 }
 
 .controls {
@@ -63,77 +84,84 @@ canvas {
     gap: 20px;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
+/* --- Cards & Grid Items --- */
+.algorithm-card, .compare-item, #playground-container .controls {
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.algorithm-card:hover, .compare-item:hover {
+    border-color: var(--primary-glow);
+    box-shadow: 0 0 15px var(--border-color);
+}
+
+.algorithm-card h3, .compare-item h4, #playground-container h4, #legend h4, #stats-container h4 {
+    margin-top: 0;
+    color: var(--text-light);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--primary-glow);
+}
+
+/* --- Buttons & Inputs --- */
 button, select {
-    background-color: var(--secondary-color);
+    background-color: var(--container-bg);
     color: var(--text-color);
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--border-color);
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 button:hover, select:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    border-color: var(--primary-glow);
+    color: var(--text-light);
 }
 
-#overview-container {
+button {
+    background-color: var(--primary-glow);
+    color: #0D1117;
+    font-weight: 600;
+    border-color: var(--primary-glow);
+}
+
+button:hover {
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* --- Canvas & Maze --- */
+canvas {
+    background-color: var(--path-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+.mini-playground canvas {
+    display: block;
+    margin: 20px auto 15px auto;
+}
+
+/* --- Specific Layouts --- */
+#overview-container, .solver-race-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 20px;
-}
-
-.algorithm-card {
-    background-color: var(--secondary-color);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.algorithm-card h3 {
-    margin-top: 0;
-    color: var(--primary-color);
-}
-
-.mini-playground {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
 }
 
 #compare-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.solver-race-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-}
-
-.compare-item {
-    background-color: var(--secondary-color);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.compare-item h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-}
-
-.compare-item p {
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-size: 0.9em;
-    text-align: center;
+    gap: 25px;
 }
 
 .compare-item canvas {
@@ -145,7 +173,7 @@ button:hover, select:hover {
 
 #playground-container {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 30px;
     align-items: start;
 }
@@ -153,74 +181,44 @@ button:hover, select:hover {
 #playground-container .controls {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    background-color: var(--secondary-color);
-    padding: 20px;
-    border-radius: 10px;
+    gap: 20px;
 }
 
 #playground-container .controls label {
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-#playground-container .controls select,
-#playground-container .controls button {
-    width: 100%;
+    font-weight: 400;
+    color: var(--primary-glow);
 }
 
 #playground-container #maze-canvas {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
-    max-width: 75vh; /* Max height to fit viewport */
-    max-height: 75vh;
+    max-width: 80vh;
+    max-height: 80vh;
     margin: 0;
 }
 
-#legend {
-    margin-top: 20px;
+/* --- Legend & Stats --- */
+#legend, #stats-container {
+    width: 100%;
+    margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid var(--primary-color);
+    border-top: 1px solid var(--border-color);
 }
 
-#legend h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--primary-color);
-}
-
-.legend-item {
+.legend-item, .stats-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 5px;
+    font-size: 0.9em;
+    margin-bottom: 8px;
 }
 
 .legend-color {
     width: 20px;
     height: 20px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
-}
-
-#stats-container {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid var(--primary-color);
-}
-
-#stats-container h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--primary-color);
-}
-
-.stats-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9em;
 }
 
 .stats-item span:first-child {
@@ -228,7 +226,8 @@ button:hover, select:hover {
 }
 
 .stats-item span:last-child {
-    font-weight: bold;
+    font-weight: 600;
     min-width: 50px;
     text-align: right;
+    color: var(--text-light);
 }
